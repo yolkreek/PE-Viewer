@@ -1,0 +1,17 @@
+
+typedef enum _Status Status;
+
+enum _Status
+{
+    NOERROR = 0x0,
+    ERROR_OUT_OF_RANGE,
+    ERROR_OUT_OF_FILE,
+
+    ERROR_INVALID_SIZE,
+    ERROR_INVALID_RANGE,
+    ERROR_INVALID_MEMORY,
+
+    ERROR_NULLPTR,
+
+    ERROR_FILEOPEN,
+};

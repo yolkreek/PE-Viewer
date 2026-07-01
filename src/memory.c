@@ -1,14 +1,15 @@
 #include "memory.h"
+#include <stdio.h>
 
-int viewMemoryMap(char* mem, int memSize)
+Status viewMemoryMap(uint8_t* mem, int memSize)
 {
     return viewMemorySnippet(mem, memSize, 0, memSize - 1);
 }
 
 //regarding that you're inputting correct memSize.
-int viewMemorySnippet(char* mem, int memSize, int rangeFrom, int rangeTo) 
+Status viewMemorySnippet(uint8_t* mem, int memSize, int rangeFrom, int rangeTo) 
 {
-    if (mem == NULL) return ERROR_INVALID_MEMORY;
+    if (mem == NULL) return ERROR_NULLPTR;
     if (memSize <= 0) return ERROR_INVALID_SIZE;
     if (rangeFrom < 0 || rangeTo > memSize - 1) return ERROR_OUT_OF_RANGE;
 
@@ -32,14 +33,14 @@ int viewMemorySnippet(char* mem, int memSize, int rangeFrom, int rangeTo)
     return NOERROR;
 }
 
-void printMemoryLine(char* mem, int line, int rangeFrom, int rangeTo) 
+void printMemoryLine(uint8_t* mem, int line, int rangeFrom, int rangeTo) 
 {
     int indexCursor = line * 0x10 + rangeFrom;
     printf("%08X ", 0x10 * line);
     for (int j = 0; j < 0x10; j++)
         {
             if (j < rangeFrom || j > rangeTo) printf("%3s", " ");
-            else printf("%02X ", mem[indexCursor++]);
+            else printf("%02X ", mem[indexCursor++] & 0xFF);
         }
 }
 
