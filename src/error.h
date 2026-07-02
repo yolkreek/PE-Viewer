@@ -1,3 +1,4 @@
+#pragma once
 
 typedef enum _Status Status;
 

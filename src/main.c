@@ -6,7 +6,7 @@
 
 char* sample = "samples/tiny.exe";
 uint8_t memory[MEM_SIZE] = {0, 1, 2, 3, 4, 68, 29, 12, 16, 15, 18, 19, 50};
-char memoryOfSample[MEM_SIZE] = {0,};
+char memoryOfSample[MEM_SIZE] = {0};
 
 int main(int argc, char** argv)
 {
