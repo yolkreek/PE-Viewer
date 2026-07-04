@@ -1,6 +1,25 @@
 #include "memory.h"
 #include <stdio.h>
 
+static void printMemoryLine(uint8_t* mem, int line, int rangeFrom, int rangeTo) 
+{
+    int indexCursor = line * 0x10 + rangeFrom;
+    printf("%08X ", 0x10 * line);
+    for (int j = 0; j < 0x10; j++)
+        {
+            if (j < rangeFrom || j > rangeTo) printf("%3s", " ");
+            else printf("%02X ", mem[indexCursor++] & 0xFF);
+        }
+}
+
+static void printMemOutline()
+{
+    printf("%9s", " ");
+    for (int i = 0; i < 16; i++)
+        printf("%02X ", i);
+    printf("\n");
+}
+
 Status viewMemoryMap(uint8_t* mem, int memSize)
 {
     return viewMemorySnippet(mem, memSize, 0, memSize - 1);
@@ -33,21 +52,3 @@ Status viewMemorySnippet(uint8_t* mem, int memSize, int rangeFrom, int rangeTo)
     return NOERROR;
 }
 
-void printMemoryLine(uint8_t* mem, int line, int rangeFrom, int rangeTo) 
-{
-    int indexCursor = line * 0x10 + rangeFrom;
-    printf("%08X ", 0x10 * line);
-    for (int j = 0; j < 0x10; j++)
-        {
-            if (j < rangeFrom || j > rangeTo) printf("%3s", " ");
-            else printf("%02X ", mem[indexCursor++] & 0xFF);
-        }
-}
-
-void printMemOutline()
-{
-    printf("%9s", " ");
-    for (int i = 0; i < 16; i++)
-        printf("%02X ", i);
-    printf("\n");
-}

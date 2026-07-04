@@ -5,5 +5,3 @@
 
 Status viewMemoryMap(uint8_t* memory, int size); //if size is 0, show all memory map
 Status viewMemorySnippet(uint8_t* mem, int memSize, int rangeFrom, int rangeTo);
-void printMemOutline();
-void printMemoryLine(uint8_t* mem, int line, int rangeFrom, int rangeTo);
